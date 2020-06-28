@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"aaronroehl.info/pomodoro/icons"
+	"github.com/gen2brain/beeep"
 	"github.com/getlantern/systray"
 )
 
@@ -41,6 +42,7 @@ func (p *pomodoro) resume() {
 				}
 				timeLeft := p.started.Add(p.duration).Sub(a)
 				if timeLeft < 0 {
+					beeep.Notify("Take a break!", "One pomodoro finished. Time for a coffee ;)", "./logo.png")
 					p.stop()
 				}
 				p.callback(timeLeft)
